@@ -116,24 +116,24 @@ To use array-html-translator-js, we will need Node and npm (https://www.nodejs.o
 npm pack
 ```
 
-4. Copy array-html-translator-js-1.0.0.tgz to the desired directory, presumably the location of your application.
+4. Copy array-html-translator-1.0.0.tgz to the desired directory, presumably the location of your application.
 
 ```
-cp array-html-translator-js-1.0.0.tgz /path/to/application
+cp array-html-translator-1.0.0.tgz /path/to/application
 ```
 
-5. Run npm install array-html-translator-js-1.0.0.tgz.
+5. Run npm install array-html-translator-1.0.0.tgz.
 
 ```
-npm install array-html-translator-js-1.0.0.tgz
+npm install array-html-translator-1.0.0.tgz
 ```
 
 If we encounter any errors during installation, then we will try again, this time prefacing our commands with "sudo."
 
 ```
 sudo npm pack
-cp array-html-translator-js-1.0.0.tgz /path/to/application
-sudo npm install array-html-translator-js-1.0.0.tgz
+cp array-html-translator-1.0.0.tgz /path/to/application
+sudo npm install array-html-translator-1.0.0.tgz
 ```
 
 ## Installing dependencies
