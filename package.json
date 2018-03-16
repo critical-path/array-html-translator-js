@@ -23,5 +23,5 @@
     "test": "mocha ./test/*.js"
   },
   "license": "MIT",
-  "main": "array-html-translator.js",
+  "main": "array-html-translator.js"
 }
