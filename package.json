@@ -1,0 +1,27 @@
+{
+  "name": "array-html-translator-js",
+  "version": "1.0.0",
+  "description": "convert arrays to html with array-html-translator-js",
+  "keywords": [
+    "node",
+    "arrays",
+    "html",
+    "translator"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/critical-path/array-html-translator-js.git"
+  },
+  "devDependencies": {
+    "chai": ">=4.1.2",
+    "mocha": ">=4.0.1"
+  },
+  "scripts": {
+    "test": "mocha ./test/*.js"
+  },
+  "license": "MIT",
+  "main": "array-html-translator.js",
+}
