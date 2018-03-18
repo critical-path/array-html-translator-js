@@ -6,7 +6,8 @@
     "node",
     "arrays",
     "html",
-    "translator"
+    "translator",
+    "translate"
   ],
   "directories": {
     "test": "test"
