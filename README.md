@@ -1,5 +1,7 @@
 ## array-html-translator-js v1.0.0
 
+array-html-translator-js is a Node module that translates arrays to HTML.
+
 ## Introduction
 
 Writing HTML is tedious.  array-html-translator-js makes it fun!
