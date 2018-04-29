@@ -118,7 +118,7 @@ To use array-html-translator-js, we will need Node and npm (https://www.nodejs.o
 npm pack
 ```
 
-4. Copy array-html-translator-1.0.0.tgz to the desired directory, presumably the location of your application.
+4. Copy array-html-translator-1.0.0.tgz to the desired directory, presumably the location of our application.
 
 ```
 cp array-html-translator-1.0.0.tgz /path/to/application
