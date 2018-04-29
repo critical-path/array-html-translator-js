@@ -190,6 +190,3 @@ cd /path/to/application/node_modules/array-html-translator
 ```
 npm test
 ```
-
-These test cases are not exhaustive.  They are meant to provide a basic level of confidence in array-html-translator-js.
-
