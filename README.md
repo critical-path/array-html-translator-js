@@ -112,53 +112,11 @@ To use array-html-translator-js, we will need Node and npm (https://www.nodejs.o
 
 1. Download this repository.
 2. Extract its contents.
-3. Run npm pack.
-
-```
-npm pack
-```
-
-4. Copy array-html-translator-1.0.0.tgz to the desired directory, presumably the location of our application.
-
-```
-cp array-html-translator-1.0.0.tgz /path/to/application
-```
-
-5. Run npm install array-html-translator-1.0.0.tgz.
-
-```
-npm install array-html-translator-1.0.0.tgz
-```
-
-If we encounter any errors during installation, then we will try again, this time prefacing our commands with "sudo."
-
-```
-sudo npm pack
-cp array-html-translator-1.0.0.tgz /path/to/application
-sudo npm install array-html-translator-1.0.0.tgz
-```
-
-## Installing dependencies
-
-1. Locate the directory in which the array-html-module is located.
-2. Change to that directory.
-
-```
-cd /path/to/application/node_modules/array-html-translator
-```
-
 3. Run npm install.
 
 ```
 npm install
 ```
-
-If we encounter any errors during installation, then we will try again, this time prefacing our commands with "sudo."
-
-```
-sudo npm install
-```
-
 
 ## Using array-html-translator-js
 
@@ -178,14 +136,7 @@ console.log(outHtml);
 
 ## Testing array-html-translator-js
 
-1. Locate the directory in which the array-html-translator module is located.
-2. Change to that directory.
-
-```
-cd /path/to/application/node_modules/array-html-translator
-```
-
-3. Run npm test.
+1. Run npm test from the directory in which you extracted the contents of this repository.
 
 ```
 npm test
