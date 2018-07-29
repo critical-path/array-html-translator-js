@@ -142,7 +142,7 @@ var tests = [
 ];
 
 
-// loop over test cases.
+// loop over test cases
 
 for (var index = 0; index < tests.length; index++) {
   var test = tests[index];
