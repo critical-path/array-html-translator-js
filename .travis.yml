@@ -1,0 +1,23 @@
+# repo branches
+
+branches:
+  only:
+  - master
+
+# job environment
+
+sudo: false
+
+language: node_js
+
+node_js:
+  - "node"
+  - "lts/*"
+
+# job phases
+
+install:
+  - npm install
+
+script:
+  - npm test
