@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/critical-path/array-html-translator-js.svg?branch=master)](https://travis-ci.com/critical-path/array-html-translator-js)
+
 ## array-html-translator-js v1.0.0
 
 array-html-translator-js is a Node module that translates arrays to HTML.
