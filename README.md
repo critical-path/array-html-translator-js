@@ -107,7 +107,7 @@ To describe the hierarchical relationships between HTML elements, we use nested 
 
 ## Dependencies:
 
-To use array-html-translator-js, we will need Node and npm (https://www.nodejs.org).  To test it, we will need chai (https://chaijs.com) and Mocha (https://mochajs.org).
+To use array-html-translator-js, we will need Node and npm.  To test it, we will need chai, istanbul, and mocha.
 
 
 ## Installing array-html-translator-js
@@ -130,10 +130,10 @@ npm install
 
 ```
 var Translator = require("array-html-translator");
-var inArray = ["@html"];
-var translator = new Translator(inArray);
-var outHtml = translator.translate()
-console.log(outHtml);
+var array = ["@html"];
+var translator = new Translator(array);
+var html = translator.translate()
+console.log(html);
 ```
 
 ## Testing array-html-translator-js
