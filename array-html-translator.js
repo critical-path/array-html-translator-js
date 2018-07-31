@@ -1,4 +1,4 @@
-// declare new class
+/* Declare class. */
 
 class Translator {
   constructor(array) {
@@ -7,8 +7,21 @@ class Translator {
     this.branchHtmlElements = [];
   
     this.voidHtmlElements = [
-      "area", "base", "br", "col", "embed", "hr", "img", "input", 
-      "keygen", "link", "meta", "param", "source", "track", "wbr"
+      "area", 
+      "base", 
+      "br", 
+      "col", 
+      "embed", 
+      "hr", 
+      "img", 
+      "input", 
+      "keygen", 
+      "link", 
+      "meta", 
+      "param", 
+      "source", 
+      "track", 
+      "wbr"
     ];
 
     this.htmlElementName = {
@@ -49,27 +62,27 @@ class Translator {
 };
 
 
-// extend class
-// do not call this method directly
+/* Parse an input array.  
+   Do not call this method directly. */
 
 Translator.prototype._parseArray = function() {
   try {
   
-    // loop over each item in the list
+    /* Loop over each item in the array. */
       
     for (let index = 0; index < this.array.length; index++) { 
       var item = this.array[index];
 
-    // if the item is of type list, 
-    // pass it in to a new instance of Translator,
-    // recursively coverting it to html
+    /* If the item is of type array, then pass it in to a 
+       new instance of Translator, recursively coverting 
+       it to HTML. */
 
-      if (typeof(item) !== "string") { 
+      if (Array.isArray(item)) { 
         var translator = new Translator(item);
         var branchHtmlElement = translator.translate();
         this.branchHtmlElements.push(branchHtmlElement);
 
-    // if the item is of type string, then is ready to be parsed
+    /* If the item is of type string, then begin to parse it. */
 
       } else {
         item = item.split(" ")
@@ -77,31 +90,31 @@ Translator.prototype._parseArray = function() {
         for (let index = 0; index < item.length; index++) { 
           var component = item[index];
 
-    // first, try to find the name of the html element
+    /* First, try to find the name of the HTML element. */
     
           if (component.startsWith(this.htmlElementName.delimiter)) {
             var htmlElementName = component.substring(1);
             this.htmlElementName.value = htmlElementName;
             
-    // second, try to find its id
+    /* Second, try to find its id. */
     
           } else if (component.startsWith(this.htmlElementId.delimiter)) {
             var htmlElementId = component.substring(1);
             this.htmlElementId.value = htmlElementId;
             
-    // third, try to find its class
+    /* Third, try to find its class. */
 
           } else if (component.startsWith(this.htmlElementClass.delimiter)) {
             var htmlElementClass = component.substring(1);
             this.htmlElementClass.value = htmlElementClass;
             
-    // fourth, try to find any other of its attributes
+    /* Fourth, try to find any other of its attributes. */
 
           } else if (component.startsWith(this.htmlElementAttributes.delimiter)) {
             var htmlElementAttribute = component.substring(1);
             this.htmlElementAttributes.pairs.push(htmlElementAttribute);
             
-    // last, try to find its text content
+    /* Last, try to find its text content. */
 
           } else if (component.startsWith(this.htmlElementText.delimiter)) {
             var htmlElementText = component.substring(1);
@@ -112,158 +125,131 @@ Translator.prototype._parseArray = function() {
     };
 
   } catch(error) {
-    throw new Error("error parsing array!");
+    throw new Error("Error parsing array.");
         
   };
 };
 
 
-// extend class again
-// do not call this method directly
+/* Get an HTML element's start tag.
+   Do not call this method directly. */
 
 Translator.prototype._getHtmlElementStartTag = function() {
-  try {
-  
-    // create the start tag of the html element
-    // first, open the tag
+  /* First, open the HTML element's tag. */
     
-    var htmlElementStartTag = "<";
+  var htmlElementStartTag = "<";
     
-    // second, try to add the name of the element
+  /* Second, try to add the name of the element. */
+    
+  if (this.htmlElementName.value) {
+    var htmlElementName = this.htmlElementName.value;
+    htmlElementStartTag += htmlElementName + " ";
+  };
+
+  /* Third, try to add its id and enclose it in quotation marks. */
+    
+  if (this.htmlElementId.value) {
+    var htmlElementId = this.htmlElementId.key + "=" + "\"" + this.htmlElementId.value + "\"";
+    htmlElementStartTag += htmlElementId + " ";
+  };
+
+  /* Fourth, try to add its class and enclose it in quotation marks. */
+
+  if (this.htmlElementClass.value) {
+    var htmlElementClass = this.htmlElementClass.key + "=" + "\"" + this.htmlElementClass.value + "\"";
+    htmlElementStartTag += htmlElementClass + " ";
+  };
+    
+  /* Fifth, try to add any other of its attributes, assuming that the
+     user enclosed them in quotation marks. */
+ 
+  if (this.htmlElementAttributes.pairs) {
+    var htmlElementAttributes = "";
+    
+    for (var index = 0; index < this.htmlElementAttributes.pairs.length; index++) {
+      var attribute = this.htmlElementAttributes.pairs[index];
+      htmlElementAttributes += attribute + " "
+    };
+    
+    htmlElementStartTag += htmlElementAttributes;
+  };
+    
+  /* Sixth, remove any trailing space characters. */
+    
+  htmlElementStartTag = htmlElementStartTag.trim();
+    
+  /* Last, close the tag. */
+        
+  htmlElementStartTag += ">";
+    
+  this.htmlElementStartTag = htmlElementStartTag;
+};
+
+
+/* Get an HTML element's end tag.
+   Do not call this method directly. */
+
+Translator.prototype._getHtmlElementEndTag = function() {    
+  /* First, determine whether the HTML element requires an end tag.
+     If not, then pass.  If yes, then proceed. */
+    
+  /* Second, open the tag. */
+    
+  if (this.voidHtmlElements.indexOf(this.htmlElementName.value) == -1) {
+    var htmlElementEndTag = "</";
+      
+  /* Third, try to add the name of the element. */
     
     if (this.htmlElementName.value) {
       var htmlElementName = this.htmlElementName.value;
-      htmlElementStartTag += htmlElementName + " ";
+      htmlElementEndTag += htmlElementName;
     };
-
-    // third, try to add its id and enclose it in quotation marks
-    
-    if (this.htmlElementId.value) {
-      var htmlElementId = this.htmlElementId.key + "=" + "\"" + this.htmlElementId.value + "\"";
-      htmlElementStartTag += htmlElementId + " ";
-    };
-
-    // fourth, try to add its class and enclose it in quotation marks
-
-    if (this.htmlElementClass.value) {
-      var htmlElementClass = this.htmlElementClass.key + "=" + "\"" + this.htmlElementClass.value + "\"";
-      htmlElementStartTag += htmlElementClass + " ";
-    };
-    
-    // fifth, try to add any other of its attributes, assuming that the
-    // user enclosed them in quotation marks
- 
-    if (this.htmlElementAttributes.pairs) {
-      var htmlElementAttributes = "";
-    
-      for (var index = 0; index < this.htmlElementAttributes.pairs.length; index++) {
-        var attribute = this.htmlElementAttributes.pairs[index];
-        htmlElementAttributes += attribute + " "
-      };
-    
-      htmlElementStartTag += htmlElementAttributes;
-    };
-    
-    // sixth, remove any trailing space characters
-    
-    htmlElementStartTag = htmlElementStartTag.trim();
-    
-    // last, close the tag
-        
-    htmlElementStartTag += ">";
-    
-    this.htmlElementStartTag = htmlElementStartTag;
       
-  } catch(error) {
-    throw new Error("error getting html element's opening tag!");
-        
+  /* Fourth, close the tag. */
+    
+    htmlElementEndTag += ">";
+    
+    this.htmlElementEndTag = htmlElementEndTag;
   };
 };
 
 
-// extend class again
-// do not call this method directly
-
-Translator.prototype._getHtmlElementEndTag = function() {
-  try {
-  
-    // create the end tag of html element
-    
-    // first, determine whether it requires an end tag
-    // if not, then pass  
-    // if yes, then proceed
-    
-    // second, open the tag
-    
-    if (this.voidHtmlElements.indexOf(this.htmlElementName.value) == -1) {
-      var htmlElementEndTag = "</";
-      
-    // third, try to add the name of the element
-    
-      if (this.htmlElementName.value) {
-        var htmlElementName = this.htmlElementName.value;
-        htmlElementEndTag += htmlElementName;
-      };
-      
-    // fourth, close the tag
-    
-      htmlElementEndTag += ">";
-    
-      this.htmlElementEndTag = htmlElementEndTag;
-    };
-     
-  } catch(error) {
-    throw new Error("error getting html element's closing tag!");
-        
-  };
-};
-
-
-// extend class again
-// do not call this method directly
+/* Get a full HTML element, including start and end tags.
+   Do not call this method directly. */
 
 Translator.prototype._getHtmlElement = function() {
-  try {
-
-    // create the full html element
-
-    var htmlElement = "";
+  var htmlElement = "";
     
-    // first, add the start tag
+  /* First, add the HTML element's start tag. */
     
-    htmlElement += this.htmlElementStartTag;
+  htmlElement += this.htmlElementStartTag;
 
-    // second, try to add its text content
+  /* Second, try to add its text content. */
 
-    if (this.htmlElementText.value) {
-      var htmlElementText = this.htmlElementText.value;
-      htmlElement += htmlElementText
-    };
-    
-    // third, try to add the html of any branches
-
-    if (this.branchHtmlElements) {
-      for (var index = 0; index < this.branchHtmlElements.length; index++) {
-        var branchHtmlElement = this.branchHtmlElements[index];
-        htmlElement += branchHtmlElement;
-      };
-    };
-    
-    // last, close the tag
-
-    htmlElement += this.htmlElementEndTag;
-   
-    this.htmlElement = htmlElement;
-      
-  } catch(error) {
-    throw new Error("error getting full html element!");
-        
+  if (this.htmlElementText.value) {
+    var htmlElementText = this.htmlElementText.value;
+    htmlElement += htmlElementText
   };
+    
+  /* Third, try to add the HTML of any branches. */
+
+  if (this.branchHtmlElements) {
+    for (var index = 0; index < this.branchHtmlElements.length; index++) {
+      var branchHtmlElement = this.branchHtmlElements[index];
+      htmlElement += branchHtmlElement;
+    };
+  };
+    
+  /* Last, close the tag. */
+
+  htmlElement += this.htmlElementEndTag;
+   
+  this.htmlElement = htmlElement;
 };
 
 
-// extend class again
-// call this method directly
+/* Convert an input array to HTML.
+   Call this method directly. */
 
 Translator.prototype.translate = function() {
   this._parseArray();
@@ -275,6 +261,6 @@ Translator.prototype.translate = function() {
 };
 
 
-// export class
+/* Export class. */
     
 module.exports = Translator;
