@@ -121,3 +121,16 @@ describe("four nested elements", function() {
     );
   });
 });
+
+
+describe("null", function() {
+  it("should throw error", function() {
+    chai.assert.throws(
+      function() {
+        new Translator(null).translate()
+      },
+      Error,
+      "Error parsing array."
+    );
+  });
+});
