@@ -16,12 +16,13 @@
     "type": "git",
     "url": "https://github.com/critical-path/array-html-translator-js.git"
   },
-  "devDependencies": {
-    "chai": ">=4.1.2",
-    "mocha": ">=4.0.1"
-  },
+  "devDependencies": [
+    "chai",
+    "istanbul",
+    "mocha"
+  ],
   "scripts": {
-    "test": "mocha ./test/*.js"
+    "test": "istanbul cover _mocha ./test/*.js"
   },
   "license": "MIT",
   "main": "array-html-translator.js"
