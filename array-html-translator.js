@@ -95,28 +95,32 @@ Translator.prototype._parseArray = function() {
           if (component.startsWith(this.htmlElementName.delimiter)) {
             var htmlElementName = component.substring(1);
             this.htmlElementName.value = htmlElementName;
+          };
             
     /* Second, try to find its id. */
     
-          } else if (component.startsWith(this.htmlElementId.delimiter)) {
+          if (component.startsWith(this.htmlElementId.delimiter)) {
             var htmlElementId = component.substring(1);
             this.htmlElementId.value = htmlElementId;
+          };
             
     /* Third, try to find its class. */
 
-          } else if (component.startsWith(this.htmlElementClass.delimiter)) {
+          if (component.startsWith(this.htmlElementClass.delimiter)) {
             var htmlElementClass = component.substring(1);
             this.htmlElementClass.value = htmlElementClass;
+          };
             
     /* Fourth, try to find any other of its attributes. */
 
-          } else if (component.startsWith(this.htmlElementAttributes.delimiter)) {
+          if (component.startsWith(this.htmlElementAttributes.delimiter)) {
             var htmlElementAttribute = component.substring(1);
             this.htmlElementAttributes.pairs.push(htmlElementAttribute);
+          };
             
     /* Last, try to find its text content. */
 
-          } else if (component.startsWith(this.htmlElementText.delimiter)) {
+          if (component.startsWith(this.htmlElementText.delimiter)) {
             var htmlElementText = component.substring(1);
             this.htmlElementText.value = htmlElementText;
           };
@@ -163,7 +167,7 @@ Translator.prototype._getHtmlElementStartTag = function() {
   /* Fifth, try to add any other of its attributes, assuming that the
      user enclosed them in quotation marks. */
  
-  if (this.htmlElementAttributes.pairs) {
+  if (this.htmlElementAttributes.pairs.length > 0) {
     var htmlElementAttributes = "";
     
     for (var index = 0; index < this.htmlElementAttributes.pairs.length; index++) {
@@ -190,9 +194,7 @@ Translator.prototype._getHtmlElementStartTag = function() {
    Do not call this method directly. */
 
 Translator.prototype._getHtmlElementEndTag = function() {    
-  /* First, determine whether the HTML element requires an end tag.
-     If not, then pass.  If yes, then proceed. */
-    
+  /* First, determine whether the HTML element requires an end tag.    
   /* Second, open the tag. */
     
   if (this.voidHtmlElements.indexOf(this.htmlElementName.value) == -1) {
@@ -233,7 +235,7 @@ Translator.prototype._getHtmlElement = function() {
     
   /* Third, try to add the HTML of any branches. */
 
-  if (this.branchHtmlElements) {
+  if (this.branchHtmlElements.length > 0) {
     for (var index = 0; index < this.branchHtmlElements.length; index++) {
       var branchHtmlElement = this.branchHtmlElements[index];
       htmlElement += branchHtmlElement;
