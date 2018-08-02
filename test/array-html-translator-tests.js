@@ -2,6 +2,17 @@ var chai = require("chai");
 var Translator = require("../array-html-translator");
 
 
+describe("empty element", function() {
+  it("should return <></>", function() {
+    chai.assert.equal(
+      new Translator([""]).translate(),
+      "<></>",
+      "success!"
+    );
+  });
+});
+
+
 describe("element name", function() {
   it("should return <h1></h1>", function() {  
     chai.assert.equal(
@@ -128,6 +139,19 @@ describe("null", function() {
     chai.assert.throws(
       function() {
         new Translator(null).translate()
+      },
+      Error,
+      "Error parsing array."
+    );
+  });
+});
+
+
+describe("[null]", function() {
+  it("should throw error", function() {
+    chai.assert.throws(
+      function() {
+        new Translator([null]).translate()
       },
       Error,
       "Error parsing array."
