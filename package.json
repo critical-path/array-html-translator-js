@@ -18,11 +18,12 @@
   },
   "devDependencies": [
     "chai",
+    "eslint",
     "istanbul",
     "mocha"
   ],
   "scripts": {
-    "test": "istanbul cover _mocha ./test/*.js"
+    "test": "eslint *.js ; istanbul cover _mocha ./test/*.js"
   },
   "license": "MIT",
   "main": "array-html-translator.js"
