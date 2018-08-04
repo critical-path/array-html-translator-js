@@ -1,3 +1,11 @@
+/**
+ * Translator class.
+ *
+ * @class
+ * @param {Array} array - array to translate.
+ * @public
+ */
+
 class Translator {
     constructor(array) {
         this.array = array
@@ -59,6 +67,12 @@ class Translator {
     }
 }
 
+/**
+ * Parse an array.
+ *
+ * @private
+ */
+
 Translator.prototype._parseArray = function() {
     try {
   
@@ -110,6 +124,12 @@ Translator.prototype._parseArray = function() {
     }
 }
 
+/**
+ * Get an HTML element's start tag.
+ *
+ * @private
+ */
+
 Translator.prototype._getHtmlElementStartTag = function() {
     var htmlElementStartTag = "<"
     
@@ -146,6 +166,12 @@ Translator.prototype._getHtmlElementStartTag = function() {
     this.htmlElementStartTag = htmlElementStartTag
 }
 
+/**
+ * Get an HTML element's end tag.
+ *
+ * @private
+ */
+
 Translator.prototype._getHtmlElementEndTag = function() {    
     if (this.voidHtmlElements.indexOf(this.htmlElementName.value) == -1) {
         var htmlElementEndTag = "</"
@@ -160,6 +186,12 @@ Translator.prototype._getHtmlElementEndTag = function() {
         this.htmlElementEndTag = htmlElementEndTag
     }
 }
+
+/**
+ * Get an HTML element, including start and end tags.
+ *
+ * @private
+ */
 
 Translator.prototype._getHtmlElement = function() {
     var htmlElement = ""
@@ -183,6 +215,13 @@ Translator.prototype._getHtmlElement = function() {
     this.htmlElement = htmlElement
 }
 
+/**
+ * Translate an array to HTML.
+ * 
+ * @returns {String} this.htmlElement - HTML translation.
+ * @public
+ */
+
 Translator.prototype.translate = function() {
     this._parseArray()
     this._getHtmlElementStartTag()
@@ -191,5 +230,11 @@ Translator.prototype.translate = function() {
       
     return this.htmlElement
 }
+
+/**
+ * Module exports.
+ *
+ * @private
+ */
 
 module.exports = Translator
