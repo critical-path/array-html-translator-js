@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/critical-path/array-html-translator-js.svg?branch=master)](https://travis-ci.com/critical-path/array-html-translator-js)
+[![Build Status](https://travis-ci.com/critical-path/array-html-translator-js.svg?branch=master)](https://travis-ci.com/critical-path/array-html-translator-js) [![Coverage Status](https://coveralls.io/repos/github/critical-path/array-html-translator-js/badge.svg)](https://coveralls.io/github/critical-path/array-html-translator-js)
 
 ## array-html-translator-js v1.0.0
 
