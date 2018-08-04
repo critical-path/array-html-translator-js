@@ -23,4 +23,5 @@ script:
   - npm test
 
 after_success:
-  - coveralls
+  - npm install --global node-coveralls
+  - cat ./coverage/lcov.info | coveralls
