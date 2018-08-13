@@ -129,11 +129,11 @@ npm install
 5. Do something fun with the HTML!
 
 ```
-var Translator = require("array-html-translator");
-var array = ["@html"];
-var translator = new Translator(array);
+var Translator = require("array-html-translator")
+var array = ["@html"]
+var translator = new Translator(array)
 var html = translator.translate()
-console.log(html);
+console.log(html)
 ```
 
 ## Testing array-html-translator-js
