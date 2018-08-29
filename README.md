@@ -4,11 +4,13 @@
 
 array-html-translator-js is a Node module that translates arrays to HTML.
 
+
 ## Introduction
 
 Writing HTML is tedious.  array-html-translator-js makes it fun!
 
 With array-html-translator-js, we use strings to define HTML elements and nested arrays to describe the hierarchical relationships between them.
+
 
 ## Defining HTML Elements
 
@@ -84,6 +86,7 @@ __Bad__:
 <h1>this</h1>
 ```
 
+
 ## Describing the Hierarchical Relationships between HTML Elements
 
 To describe the hierarchical relationships between HTML elements, we use nested arrays.
@@ -105,27 +108,28 @@ To describe the hierarchical relationships between HTML elements, we use nested 
 <html lang="en"><head><meta charset="utf-8"><title>app</title></head><body></body></html>
 ```
 
+
 ## Dependencies:
 
-To use array-html-translator-js, we will need Node and npm.  To test it, we will need chai, istanbul, and mocha.
+To use array-html-translator-js, we will need Node and npm.  To test it, we will need chai, eslint, istanbul, and mocha.
 
 
 ## Installing array-html-translator-js
 
-1. Download this repository.
-2. Extract its contents.
-3. Run npm install.
+1. Clone or download this repository.
+2. Run `npm` with the `install` command.
 
 ```
 npm install
 ```
 
+
 ## Using array-html-translator-js
 
-1. Require the array-html-translator module.
+1. Require the `array-html-translator` module.
 2. Create an array.
-3. Instantiate Translator, passing in the array.
-4. Call the translate method.
+3. Instantiate `Translator`, passing in the array.
+4. Call the `translate` method.
 5. Do something fun with the HTML!
 
 ```
@@ -136,10 +140,12 @@ var html = translator.translate()
 console.log(html)
 ```
 
+
 ## Testing array-html-translator-js
 
-1. Run npm test from the directory in which you extracted the contents of this repository.
+Run `npm` with the `test` command.
 
 ```
 npm test
 ```
+
